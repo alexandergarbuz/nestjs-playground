@@ -6,12 +6,15 @@ import { User } from './model/user.model';
 @Controller('user')
 export class UserController {
 
-    constructor(private readonly userService: UserService){
+    private readonly userService: UserService;
+    constructor(userService: UserService){
+      this.userService = userService;
+
     }
 
     @Get("user/:id")
     async findUser(@Param("id") id:number ):Promise<User> {
-        return this.userService.finaUser(id);
+        return this.userService.findUser(id);
     }
 
     @Get("all")
